@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import { type } from "os";
-import { ref } from "process";
 
 const studentSchema = new mongoose.Schema({
     name: {

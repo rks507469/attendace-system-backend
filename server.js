@@ -1,4 +1,3 @@
-import './src/config/env.js';
 import logger from './src/utils/logger.js';
 import expressApplication from './src/app.js';
 
