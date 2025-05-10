@@ -13,7 +13,7 @@ const attendaceSchema = new mongoose.Schema({
     present: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Strudent'
+            ref: 'Student'
         }
     ],
     absent: [
