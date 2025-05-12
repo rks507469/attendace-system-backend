@@ -1,0 +1,29 @@
+import Student from '../models/Student.js';
+import Location from "../models/Location.js";
+import logger from "../utils/logger.js";
+
+export const createStudent = async (req, res) => {
+    try {
+        const {name, locationCode} = req.body;
+        const location = await Location.findOne({code: locationCode});
+        if(!location) return res.status(400).json({error: 'Invalid Location'});
+        const student = new Student({name, location: location._id});
+        await student.save();
+        res.status(201).json(student);
+    } catch (error) {
+        logger.error(`Error saving student: ${error.message}`);
+        logger.debug(error);
+        res.status(500).json({error: 'Internal Server Error'});
+    }
+};
+
+export const getAllStudents = async (req, res) => {
+    try {
+        const students = await Student.find().populate('location');
+        res.json(students);
+    } catch (error) {
+        logger.error(`Error fetching students: ${error.message}`);
+        logger.debug(error);
+        res.status(500).json({error: 'Internal Server Error'});
+    }
+};
