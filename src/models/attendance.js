@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
-const attendaceSchema = new mongoose.Schema({
+const attendaceSchema = new Schema({
     location: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Location',

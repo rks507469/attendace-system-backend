@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
-const studentSchema = new mongoose.Schema({
+const studentSchema = new Schema({
     name: {
         type: String,
         required: true,
         trim: true
     },
     location: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Location',
         required: true
     },

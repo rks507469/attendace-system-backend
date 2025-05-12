@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
-const locationSchema = new mongoose.Schema({
+const locationSchema = new Schema({
     code: {
         type: String,
         unique: true,
