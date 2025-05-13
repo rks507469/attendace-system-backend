@@ -1,5 +1,15 @@
-{ 
+{
     "version": 2,
-    "name": "attendance-system-backend",
-    "builds": [{"src": "./server.js", "use": "@vercel/node"}]
+    "builds": [
+        {
+            "src": "./server.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/server.js"
+        }
+    ]
 }
