@@ -1,22 +1,5 @@
-import dotenv from 'dotenv-safe';
+import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';
 
-// Don't use any .env.example in production
-// const isProduction = process.env.PRO_ENV === 'PRD';
-
-
-const options = {
-    allowEmptyValues: true,
-    path: '.env',
-};
-
-// if (!isProduction) {
-//     options.example = '.env.example';
-// }
-
-// console.log('[ENV] isProduction:', isProduction);
-// console.log('[ENV] config options:', options);
-
-const env = dotenv.config(options);
-
+const env = dotenv.config({ path: '.env' });
 dotenvExpand.expand(env);

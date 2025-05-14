@@ -12,6 +12,7 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "dotenv": "^16.5.0",
     "dotenv-expand": "^12.0.2",
     "dotenv-safe": "^9.1.0",
     "express": "^5.1.0",
