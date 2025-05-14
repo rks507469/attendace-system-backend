@@ -1,12 +1,12 @@
 import dotenv from 'dotenv-safe';
 import dotenvExpand from 'dotenv-expand';
 
-const isProduction = process.env.PRO_ENV === 'PRO';
+const isDevelopment = process.env.PRO_ENV === 'DEV';
 
 const env = dotenv.config({
     allowEmptyValues: false,
     path: '.env',
-    ...(isProduction ? {} : {example: '.env.example'}),
+    ...(isDevelopment ? {example: '.env.example'} : {}),
 });
 
 dotenvExpand.expand(env);
