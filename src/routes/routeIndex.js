@@ -2,13 +2,13 @@
 import {Router} from 'express';
 import studentRoutes from "./studentRoutes.js";
 import locationRoutes from "./locationRoutes.js";
-import attendaceRoutes from "./attendanceRoutes.js"
+import attendanceRoutes from "./attendanceRoutes.js"
 
 
 const router = Router();
 
 router.use('/students', studentRoutes);
 router.use('/locations', locationRoutes);
-router.use('/attendance', attendaceRoutes);
+router.use('/attendance', attendanceRoutes);
 
 export default router;

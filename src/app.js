@@ -1,9 +1,9 @@
 import './config/env.js';
 import express from 'express';
 import connectDB from './config/db.js';
-import './models/Location.js';
-import './models/Student.js';
-import './models/Attendance.js';
+import './models/location.js';
+import './models/student.js';
+import './models/attendance.js';
 import router from './routes/routeIndex.js';
 
 // Initialize express Application

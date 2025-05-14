@@ -1,4 +1,4 @@
-import Location from "../models/Location.js";
+import Location from "../models/location.js";
 import logger from "../utils/logger.js";
 
 export const createLocation = async (req, res) => {

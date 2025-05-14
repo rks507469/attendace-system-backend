@@ -1,5 +1,5 @@
-import Student from '../models/Student.js';
-import Location from "../models/Location.js";
+import Student from '../models/student.js';
+import Location from "../models/location.js";
 import logger from "../utils/logger.js";
 
 export const createStudent = async (req, res) => {
