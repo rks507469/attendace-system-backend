@@ -6,7 +6,7 @@ import dotenvExpand from 'dotenv-expand';
 
 
 const options = {
-    allowEmptyValues: false,
+    allowEmptyValues: true,
     path: '.env',
 };
 
@@ -18,4 +18,5 @@ const options = {
 // console.log('[ENV] config options:', options);
 
 const env = dotenv.config(options);
+
 dotenvExpand.expand(env);

@@ -15,7 +15,7 @@ expressApplication.use(express.json());
 // Routes
 expressApplication.use('/api', router);
 
-// Connecting Databse
+// Connecting Database
 connectDB();
 
 export default expressApplication;
