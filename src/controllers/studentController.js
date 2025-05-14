@@ -27,3 +27,17 @@ export const getAllStudents = async (req, res) => {
         res.status(500).json({error: 'Internal Server Error'});
     }
 };
+
+export const getAllStudentsByLocation = async (req, res) => {
+    try {
+        const {locationCode} = req.params;
+        const location = await Location.findOne({code: locationCode});
+        if (!location) return res.status(404).json({error: 'Location not found'});
+        const students = await Student.find({location: location._id}).populate('location');
+        return res.status(200).json(students);
+    } catch (error) {
+        logger.error(`Error fetching students: ${error.message}`);
+        logger.debug(error);
+        res.status(500).json({error: 'Internal Server Error'});
+    }
+}

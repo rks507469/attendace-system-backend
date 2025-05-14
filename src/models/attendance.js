@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
-const attendaceSchema = new Schema({
+const attendanceSchema = new Schema({
     location: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Location',
@@ -28,6 +28,6 @@ const attendaceSchema = new Schema({
         timestamps: true
     });
 
-attendaceSchema.index({ date: 1, location: 1 }, { unique: true });
+attendanceSchema.index({ date: 1, location: 1 }, { unique: true });
 
-export default mongoose.model('Attendance', attendaceSchema);
+export default mongoose.model('Attendance', attendanceSchema);
