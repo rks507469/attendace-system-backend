@@ -5,9 +5,16 @@ import './models/location.js';
 import './models/student.js';
 import './models/attendance.js';
 import router from './routes/routeIndex.js';
+import cors from 'cors';
 
 // Initialize express Application
 const expressApplication = express();
+
+// Cors
+expressApplication.use(cors({
+    origin: '*',
+    credentials: true,
+}));
 
 // Middleware
 expressApplication.use(express.json());
