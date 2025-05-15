@@ -13,7 +13,7 @@ const expressApplication = express();
 // Cors
 expressApplication.use(cors({
     origin: '*',
-    credentials: true,
+    credentials: false,
 }));
 
 // Middleware
