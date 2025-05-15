@@ -6,7 +6,7 @@ export const createStudent = async (req, res) => {
     try {
         const {name, locationCode} = req.body;
         const location = await Location.findOne({code: locationCode});
-        if(!location) return res.status(400).json({error: 'Invalid Location'});
+        if (!location) return res.status(400).json({error: 'Invalid Location'});
         const student = new Student({name, location: location._id});
         await student.save();
         res.status(201).json(student);
@@ -37,6 +37,33 @@ export const getAllStudentsByLocation = async (req, res) => {
         return res.status(200).json(students);
     } catch (error) {
         logger.error(`Error fetching students: ${error.message}`);
+        logger.debug(error);
+        res.status(500).json({error: 'Internal Server Error'});
+    }
+}
+
+export const bulkAddStudents = async (req, res) => {
+    try {
+        const students = req.body;
+        if (!Array.isArray(students) || students.length === 0) {
+            return res.status(400).json({error: 'Cannot add empty students'});
+        }
+
+        const validStudents = await Promise.all(
+            students.map(async student => {
+                const location = await Location.findOne({code: student.location});
+                if (!location) return res.status(400).json({error: 'Invalid Location'});
+
+                return {
+                    name: student.name,
+                    location: location._id
+                }
+            })
+        );
+        const insertedStudents = await Student.insertMany(validStudents);
+        return res.status(200).json({message: 'Students added successfully', students: insertedStudents});
+    } catch (error) {
+        logger.error(`Error Adding students: ${error.message}`);
         logger.debug(error);
         res.status(500).json({error: 'Internal Server Error'});
     }
