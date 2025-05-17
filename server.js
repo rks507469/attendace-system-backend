@@ -75,6 +75,8 @@ expressApplication.get("/", (req, res) => {
 // Swagger for express
 expressApplication.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+injectSpeedInsights();
+
 expressApplication.listen(port, () => {
     logger.info(`Server running on the port ${port}`);
 });
