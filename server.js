@@ -74,8 +74,15 @@ expressApplication.get("/", (req, res) => {
 
 // Swagger for express
 expressApplication.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
-    customCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
-    customJs: 'https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js'
+    customJs: [
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui-bundle.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui-standalone-preset.min.js',
+    ],
+    customCssUrl: [
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui-standalone-preset.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui.css',
+    ],
 }));
 
 injectSpeedInsights();
