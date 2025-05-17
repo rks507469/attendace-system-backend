@@ -14,7 +14,7 @@ const swaggerDefinition = {
         version: '1.0.0',
         description: 'Attendance system Backend',
         contact: {
-            name: 'Developers - Aslam, Sanat',
+            name: 'Devs - Aslam, Sanat',
             url: 'https://www.linkedin.com/in/mohdaslam-profile/',
             email: 'rks507469@gmail.com'
         }
