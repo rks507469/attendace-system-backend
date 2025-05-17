@@ -4,6 +4,8 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 
 
+// CDN CSS
+const CSS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui.min.js';
 // swagger configs
 const swaggerDefinition = {
     openapi: '3.0.0',
@@ -70,7 +72,11 @@ expressApplication.get("/", (req, res) => {
 });
 
 // Swagger for express
-expressApplication.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+expressApplication.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec, {customCssUrl: CSS_URL})
+);
 
 expressApplication.listen(port, () => {
     logger.info(`Server running on the port ${port}`);
