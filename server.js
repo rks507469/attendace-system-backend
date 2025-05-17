@@ -2,38 +2,28 @@ import logger from './src/utils/logger.js';
 import expressApplication from './src/app.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
+import {injectSpeedInsights} from "@vercel/speed-insights";
 
 
 // CDN CSS
 // const CSS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.21.0/swagger-ui.min.js';
 // swagger configs
 const swaggerDefinition = {
-    openapi: '3.0.0',
-    info: {
-        title: 'Attendance system API',
-        version: '1.0.0',
-        description: 'Attendance system Backend',
-        contact: {
+    openapi: '3.0.0', info: {
+        title: 'Attendance system API', version: '1.0.0', description: 'Attendance system Backend', contact: {
             name: 'Devs - Aslam, Sanat',
             url: 'https://www.linkedin.com/in/mohdaslam-profile/',
             email: 'rks507469@gmail.com'
         }
-    },
-    servers: [
-        {
-            url: 'http://localhost:9000',
-            description: 'Development server'
-        },
-        {
-            url: 'https://attendace-system-backend.vercel.app',
-            description: 'Production server'
-        }
-    ]
+    }, servers: [{
+        url: 'http://localhost:9000', description: 'Development server'
+    }, {
+        url: 'https://attendace-system-backend.vercel.app', description: 'Production server'
+    }]
 };
 
 const options = {
-    swaggerDefinition,
-    apis: ['*.js', 'src/app.js', 'src/routes/*.js']
+    swaggerDefinition, apis: ['*.js', 'src/app.js', 'src/routes/*.js']
 }
 
 const swaggerSpec = swaggerJsdoc(options);
@@ -68,15 +58,22 @@ const port = process.env.PORT || 9000;
  *                   example: Attendance Backend System is UP!
  */
 expressApplication.get("/", (req, res) => {
-    res.json({message: "Attendance Backend System is UP!"});
+    //res.json({message: "Attendance Backend System is UP!"});
+    res.send(`
+    <html lang="en">
+           <head>
+             <title>Attendance Backend System</title>
+           </head>
+           <body>
+             <h1>Attendance Backend System is UP!</h1>
+             ${injectSpeedInsights()}
+           </body>
+         </html>
+    `);
 });
 
 // Swagger for express
-expressApplication.use(
-    '/api-docs',
-    swaggerUi.serve,
-    swaggerUi.setup(swaggerSpec)
-);
+expressApplication.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 expressApplication.listen(port, () => {
     logger.info(`Server running on the port ${port}`);

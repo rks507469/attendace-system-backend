@@ -6,7 +6,6 @@ import './models/student.js';
 import './models/attendance.js';
 import router from './routes/routeIndex.js';
 import cors from 'cors';
-import {injectSpeedInsights} from '@vercel/speed-insights';
 
 // Initialize express Application
 const expressApplication = express();
@@ -25,8 +24,5 @@ expressApplication.use('/api', router);
 
 // Connecting Database
 await connectDB();
-
-// speed insights
-injectSpeedInsights();
 
 export default expressApplication;
