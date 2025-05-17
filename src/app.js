@@ -1,6 +1,6 @@
 import './config/env.js';
 import express from 'express';
-import connectDB from './config/db.js';
+import {connectDB} from './config/db.js';
 import './models/location.js';
 import './models/student.js';
 import './models/attendance.js';
@@ -23,6 +23,6 @@ expressApplication.use(express.json());
 expressApplication.use('/api', router);
 
 // Connecting Database
-connectDB();
+await connectDB();
 
 export default expressApplication;

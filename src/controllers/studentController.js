@@ -44,6 +44,7 @@ export const getAllStudentsByLocation = async (req, res) => {
 
 export const bulkAddStudents = async (req, res) => {
     try {
+        const one = 1;
         const students = req.body;
         if (!Array.isArray(students) || students.length === 0) {
             return res.status(400).json({error: 'Cannot add empty students'});
