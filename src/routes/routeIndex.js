@@ -8,7 +8,9 @@ import attendanceRoutes from "./attendanceRoutes.js"
 const router = Router();
 
 router.use('/students', studentRoutes);
+
 router.use('/locations', locationRoutes);
+
 router.use('/attendance', attendanceRoutes);
 
 export default router;
