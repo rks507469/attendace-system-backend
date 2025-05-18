@@ -11,6 +11,10 @@ const attendanceSchema = new Schema({
         type: Date,
         required: true
     },
+    volunteer: {
+        type: String,
+        required: true
+    },
     present: [
         {
             type: mongoose.Schema.Types.ObjectId,
