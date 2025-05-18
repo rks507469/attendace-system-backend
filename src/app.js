@@ -3,9 +3,10 @@ import express from 'express';
 import {connectDB} from './config/db.js';
 import './models/location.js';
 import './models/student.js';
-import './models/attendance.js';
+
 import router from './routes/routeIndex.js';
 import cors from 'cors';
+import './models/attendanceForm.js';
 
 // Initialize express Application
 const expressApplication = express();

@@ -1,20 +1,14 @@
-import { Router } from "express";
-import {takeAttendance} from '../controllers/attendanceController.js'
+// src/routes/attendanceRoutes.js
+import { Router } from 'express';
+import { takeAttendance, submitAttendanceForm,getAttendanceData } from "../controllers/attendanceController.js";
 
 const router = Router();
 
 /**
  * @swagger
- * tags:
- *   name: Attendance
- *   description: Endpoints for recording attendance
- */
-
-/**
- * @swagger
- * /api/attendance:
+ * /api/attendance/take:
  *   post:
- *     summary: Record attendance for students
+ *     summary: Record attendance 
  *     tags: [Attendance]
  *     requestBody:
  *       required: true
@@ -22,38 +16,67 @@ const router = Router();
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - date
- *               - location
- *               - records
+ *             properties:
+ *               location:
+ *                 type: string
+ *               date:
+ *                 type: string
+ *                 format: date
+ *               present:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               absent:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       201:
+ *         description: Attendance recorded successfully
+ *       500:
+ *         description: Server error
+ */
+router.post('/take', takeAttendance);
+
+/**
+ * @swagger
+ * /api/attendance/submit:
+ *   post:
+ *     summary: Submit attendance form data
+ *     tags: [Attendance]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
  *             properties:
  *               date:
  *                 type: string
  *                 format: date
- *                 example: "2025-05-15"
  *               location:
  *                 type: string
- *                 example: "DD_LOC2"
- *               records:
+ *               locationName:
+ *                 type: string
+ *               presentStudents:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               volunteers:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               additionalStudents:
  *                 type: array
  *                 items:
  *                   type: object
- *                   required:
- *                     - studentId
- *                     - present
- *                   properties:
- *                     studentId:
- *                       type: string
- *                       example: "6638c8312a99db464d279cb1"
- *                     present:
- *                       type: boolean
- *                       example: true
  *     responses:
- *       200:
- *         description: Attendance recorded successfully
- *       400:
- *         description: Invalid request body
+ *       201:
+ *         description: Attendance form submitted successfully
+ *       500:
+ *         description: Server error
  */
-router.post('/', takeAttendance);
+router.post('/submit', submitAttendanceForm);
+router.get('/getAttendanceData',getAttendanceData)
 
 export default router;
