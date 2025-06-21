@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {getAttendanceByLocationAndDate, takeAttendance, updateAttendance} from '../controllers/attendanceController.js'
+import {getAttendanceByLocationAndDate, takeAttendance, updateAttendance, getAttendanceByLocationAndYear} from '../controllers/attendanceController.js'
 
 const router = Router();
 
@@ -144,5 +144,53 @@ router.patch('/', updateAttendance);
  *         description: Internal server error
  */
 router.post('/fetch', getAttendanceByLocationAndDate)
+/**
+ * @swagger
+ * /api/attendance/yearly:
+ *   post:
+ *     summary: Get all attendance records for a location by year
+ *     tags: [Attendance]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - location
+ *               - year
+ *             properties:
+ *               location:
+ *                 type: string
+ *                 description: ID of the location/center
+ *                 example: "6638b4c447d703421f44dbd4"
+ *               year:
+ *                 type: number
+ *                 description: Year to fetch attendance data for
+ *                 example: 2025
+ *     responses:
+ *       200:
+ *         description: Yearly attendance records found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 location:
+ *                   type: string
+ *                 year:
+ *                   type: number
+ *                 totalRecords:
+ *                   type: number
+ *                 attendanceRecords:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *       400:
+ *         description: Location and year are required
+ *       500:
+ *         description: Internal server error
+ */
+router.post('/yearly', getAttendanceByLocationAndYear);
 
 export default router;

@@ -12,7 +12,7 @@ const attendanceSchema = new Schema({
         required: true
     },
     volunteer: {
-        type: String,
+        type: Array,
         required: true
     },
     present: [
